@@ -62,17 +62,25 @@ def restart():
 
 if __name__ == '__main__':
     try:
-		fun = sys.argv[1]
+		arg = sys.argv[1]
     except Exception:
     	print " start | stop | restart "
-        fun = ''
-    if(fun == 'start'):
+        arg = ''
+    if(arg == 'start'):
     	print "Start..."
         start()
-    if(fun == 'stop'):
+    if(arg == 'stop'):
+    	if not os.path.exists(RUN):
+    		print "Task does not start"
+    		sys.exit(0)
+    		
     	print "Stopping..."
         stop()
-    if(fun == 'restart'):
+    if(arg == 'restart'):
+    	if not os.path.exists(RUN):
+    		print "Task does not start"
+    		sys.exit(0)
+
     	print "Restart..."
         stop()
         time.sleep(1)
